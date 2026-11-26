@@ -1,0 +1,53 @@
+{
+  "schema": "miaoxyz-release-source/v1",
+  "repository": "huijoohwee/MiaoXYZ",
+  "canonicalBranch": "main",
+  "sourceRevisionBinding": "one exact MiaoXYZ commit produces every release output",
+  "inputs": {
+    "artifactPaths": [
+      "package.json",
+      "package-lock.json",
+      "wrangler.jsonc",
+      "src/**",
+      "migrations/**",
+      "public/**"
+    ],
+    "verificationOnlyPaths": [
+      "worker-configuration.d.ts"
+    ],
+    "excludedPaths": [
+      ".dev.vars",
+      ".wrangler/**",
+      "node_modules/**",
+      "catalog/**"
+    ]
+  },
+  "outputs": {
+    "pagesMirror": {
+      "sourceDirectory": "public/",
+      "destinationDirectory": "content/MiaoXYZ/",
+      "mustBindSourceRevision": true
+    },
+    "productionWorker": {
+      "config": "wrangler.jsonc",
+      "environment": "production",
+      "entrypoint": "src/worker.ts",
+      "migrationDirectory": "migrations/",
+      "mustBindSourceRevision": true,
+      "routes": [
+        "airvio.co/MiaoXYZ/api",
+        "airvio.co/MiaoXYZ/api/*"
+      ]
+    }
+  },
+  "candidateBinding": [
+    "repository",
+    "sourceRevision",
+    "sourceTreeDigest",
+    "manifestDigest",
+    "pagesArtifactDigest",
+    "workerArtifactDigest",
+    "migrationDigest",
+    "routes"
+  ]
+}
