@@ -1,0 +1,21 @@
+{
+  "name": "miaoxyz",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler d1 migrations apply agentic-miaoxyz-dev --local --config wrangler.jsonc && wrangler dev --config wrangler.jsonc",
+    "types": "wrangler types",
+    "types:check": "wrangler types --include-runtime=false --check",
+    "check": "npm run types:check && wrangler deploy --dry-run --env=\"\" --outdir .wrangler/deploy-dry-run --config wrangler.jsonc",
+    "setup": "npm install",
+    "agentic-os:setup": "agentic-os setup",
+    "lane": "agentic-os start",
+    "land": "agentic-os land",
+    "status": "agentic-os status",
+    "doctor": "agentic-os doctor",
+    "release:common": "agentic-os release-common"
+  },
+  "devDependencies": {
+    "wrangler": "4.158.0",
+    "agentic-os": "https://codeload.github.com/huijoohwee/agentic-os/tar.gz/b2966d88f57abfec7f4f1c0211c9740526a98c67"
+  }
+}
